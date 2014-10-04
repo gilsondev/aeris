@@ -1,0 +1,4 @@
+#Sat Oct 04 01:31:14 BRT 2014
+default.configuration=aeris-ejb
+eclipse.preferences.version=1
+hibernate3.enabled=true

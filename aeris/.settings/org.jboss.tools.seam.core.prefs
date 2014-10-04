@@ -1,0 +1,17 @@
+#Sat Oct 04 01:31:14 BRT 2014
+action.package=org.domain.aeris.session
+action.sources=/aeris-ejb/ejbModule
+eclipse.preferences.version=1
+model.package=org.domain.aeris.entity
+model.sources=/aeris-ejb/ejbModule
+seam.ear.project=aeris-ear
+seam.ejb.project=aeris-ejb
+seam.project.connection.profile=Aeris PostgreSQL
+seam.project.deployment.type=ear
+seam.project.settings.version=1.1
+seam.project.web.root.folder=/aeris/WebContent
+seam.runtime.name=jboss-seam-2.2.0.GA
+seam.test.creating=true
+seam.test.project=aeris-test
+test.package=org.domain.aeris.test
+test.sources=/aeris-test/test-src
