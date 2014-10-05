@@ -1,0 +1,60 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:s="http://jboss.com/products/seam/taglib"
+      xmlns:rich="http://richfaces.org/rich"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+
+	<ui:composition template="/layout/template.xhtml">
+		<ui:define name="body">
+			<h1>Cadastro de Trechos</h1>
+			<h:form>
+				<h:inputHidden value="#{trechoHandler.trecho.id}" />
+			
+				Origem:
+				<h:selectOneMenu value="#{trechoHandler.trecho.origem}">
+					<s:selectItems value="#{localidades}" var="localidade"
+						label="#{localidade.name}" noSelectionLabel="Escolha um" />
+				</h:selectOneMenu>
+				
+				Destino:
+				<h:selectOneMenu value="#{trechoHandler.trecho.destino}">
+					<s:selectItems value="#{localidades}" var="localidade"
+						label="#{localidade.name}" noSelectionLabel="Escolha um" hideNoSelectionLabel="true" />
+				</h:selectOneMenu>
+				
+				<h:commandButton value="Salvar" actionListener="#{trechoHandler.salvar()}" />
+			</h:form>
+			
+			<h:form>
+				<rich:dataTable value="#{trechos}" var="t" style="width: 60%">
+					<rich:column>
+						<f:facet name="header">Id</f:facet>
+						<h:outputText value="#{t.id}" />
+					</rich:column>
+					
+					<rich:column>
+						<f:facet name="header">Origem</f:facet>
+						<h:outputText value="#{t.origem.name}" />
+					</rich:column>
+					
+					<rich:column>
+						<f:facet name="header">Destino</f:facet>
+						<h:outputText value="#{t.destino.name}" />
+					</rich:column>
+					
+					<rich:column>
+						<f:facet name="header">Editar</f:facet>
+						<h:commandLink action="#{trechoHandler.editar()}" value="editar" />
+					</rich:column>
+
+					<rich:column>
+						<f:facet name="header">Remover</f:facet>
+						<h:commandLink action="#{trechoHandler.remover()}" value="remover" />
+					</rich:column>
+				</rich:dataTable>
+			</h:form>
+		</ui:define>
+	</ui:composition>
+</html>

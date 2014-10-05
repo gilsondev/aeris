@@ -17,7 +17,6 @@
          <property name="hibernate.hbm2ddl.auto" value="update"/>
          <property name="hibernate.show_sql" value="true"/>
          <property name="hibernate.format_sql" value="true"/>
-         <property name="hibernate.default_schema" value="aeris"/>
          <property name="jboss.entity.manager.factory.jndi.name" value="java:/aerisEntityManagerFactory"/>
       </properties>
    </persistence-unit>
