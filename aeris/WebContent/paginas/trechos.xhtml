@@ -4,12 +4,13 @@
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:s="http://jboss.com/products/seam/taglib"
       xmlns:rich="http://richfaces.org/rich"
+      xmlns:a4j="http://richfaces.org/a4j"
       xmlns:ui="http://java.sun.com/jsf/facelets">
 
 	<ui:composition template="/layout/template.xhtml">
 		<ui:define name="body">
 			<h1>Cadastro de Trechos</h1>
-			<h:form>
+			<a4j:form id="form">
 				<h:inputHidden value="#{trechoHandler.trecho.id}" />
 			
 				Origem:
@@ -24,37 +25,43 @@
 						label="#{localidade.name}" noSelectionLabel="Escolha um" hideNoSelectionLabel="true" />
 				</h:selectOneMenu>
 				
-				<h:commandButton value="Salvar" actionListener="#{trechoHandler.salvar()}" />
-			</h:form>
-			
-			<h:form>
-				<rich:dataTable value="#{trechos}" var="t" style="width: 60%">
+				<a4j:commandButton value="Salvar" actionListener="#{trechoHandler.salvar()}" reRender="tabela" />
+			</a4j:form>
+			<a4j:form id="tabela">			
+				<rich:dataTable value="#{trechos}" var="trecho" style="width: 60%">
 					<rich:column>
 						<f:facet name="header">Id</f:facet>
-						<h:outputText value="#{t.id}" />
+						<h:outputText value="#{trecho.id}" />
 					</rich:column>
 					
 					<rich:column>
 						<f:facet name="header">Origem</f:facet>
-						<h:outputText value="#{t.origem.name}" />
+						<h:outputText value="#{trecho.origem.name}" />
 					</rich:column>
 					
 					<rich:column>
 						<f:facet name="header">Destino</f:facet>
-						<h:outputText value="#{t.destino.name}" />
+						<h:outputText value="#{trecho.destino.name}" />
 					</rich:column>
 					
 					<rich:column>
 						<f:facet name="header">Editar</f:facet>
-						<h:commandLink action="#{trechoHandler.editar()}" value="editar" />
+						<a4j:commandLink action="#{trechoHandler.editar()}" value="editar" reRender="form" />
 					</rich:column>
 
 					<rich:column>
 						<f:facet name="header">Remover</f:facet>
-						<h:commandLink action="#{trechoHandler.remover()}" value="remover" />
+						<a4j:commandLink action="#{trechoHandler.remover()}" value="remover" reRender="tabela" />
 					</rich:column>
-				</rich:dataTable>
-			</h:form>
+					
+					<rich:column>
+						<f:facet name="header">Cadastrar Voo</f:facet>
+						<s:link action="#{vooHandler.manipulaVoos(trecho)}">
+							<h:outputText value="cadastrar voo" />
+						</s:link>
+					</rich:column>
+				</rich:dataTable>		
+			</a4j:form>
 		</ui:define>
 	</ui:composition>
 </html>

@@ -14,6 +14,12 @@ import javax.persistence.OneToMany;
 import org.jboss.seam.annotations.AutoCreate;
 import org.jboss.seam.annotations.Name;
 
+/**
+ * Entidade que representa os trechos dos
+ * voos.
+ * 
+ * @author Gilson Filho
+ */
 @Name("trecho")
 @AutoCreate
 @Entity

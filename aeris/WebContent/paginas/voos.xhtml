@@ -1,0 +1,87 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:rich="http://richfaces.org/rich"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+
+	<ui:composition template="/layout/template.xhtml">
+		<ui:define name="body">
+			<rich:panel>
+				<f:facet name="header">
+					<h1>Cadastro de Voos</h1>
+				</f:facet>
+				<h3><h:outputText value="#{vooHandler.trechoSelecionado.origem.name}" /> -  <h:outputText value="#{vooHandler.trechoSelecionado.destino.name}" /></h3>
+				
+				<h:form>
+					Codigo:
+					<h:inputText value="#{voo.codigo}" />
+					
+					<rich:separator lineType="solid" height="2" />
+					<rich:spacer height="20" />
+					
+					<rich:panel>
+						<f:facet name="header">Origem: #{vooHandler.trechoSelecionado.origem.name}</f:facet>
+						
+						Dia:
+						<rich:calendar value="#{voo.dataPartida}" dataPattern="dd/MM/yyyy" /><br />
+						
+						Hora:
+						<h:inputText value="#{voo.horaPartida}">
+							<f:convertDateTime type="time" pattern="HH:mm" />
+						</h:inputText>
+					</rich:panel>
+					
+					<rich:spacer height="20" />
+					
+					<rich:panel>
+						<f:facet name="header">Destino: #{vooHandler.trechoSelecionado.destino.name}</f:facet>
+						
+						Dia:
+						<rich:calendar value="#{voo.dataChegada}" dataPattern="dd/MM/yyyy" /><br />
+						
+						Hora:
+						<h:inputText value="#{voo.horaChegada}">
+							<f:convertDateTime type="time" pattern="HH:mm" />
+						</h:inputText>
+					</rich:panel>
+					
+					<rich:spacer height="20" />
+					<h:commandButton value="Salvar" action="#{vooHandler.salvarVoo()}" />
+				</h:form>
+				<rich:messages />
+			</rich:panel>
+			
+			<rich:dataTable value="#{voos}" var="voo" style="width: 80%">
+				<f:facet name="header">Voos cadastrados</f:facet>
+				
+				<rich:column>
+					<f:facet name="header">Codigo do Voo</f:facet>
+					#{voo.codigo}
+				</rich:column>
+				
+				<rich:column>
+					<f:facet name="header">Partida</f:facet>
+					<h:outputText value="#{voo.dataPartida}">
+						<f:convertDateTime type="date" pattern="dd/MM/yyyy" />
+					</h:outputText>
+					<h:outputText value=" - " />
+					<h:outputText value="#{voo.horaPartida}">
+						<f:convertDateTime type="time" pattern="HH:mm" />
+					</h:outputText>					
+				</rich:column>
+				
+				<rich:column>
+					<f:facet name="header">Chegada</f:facet>
+					<h:outputText value="#{voo.dataChegada}">
+						<f:convertDateTime type="date" pattern="dd/MM/yyyy" />
+					</h:outputText>
+					<h:outputText value=" - " />
+					<h:outputText value="#{voo.horaChegada}">
+						<f:convertDateTime type="time" pattern="HH:mm" />
+					</h:outputText>					
+				</rich:column>
+			</rich:dataTable>
+		</ui:define>
+	</ui:composition>
+</html>

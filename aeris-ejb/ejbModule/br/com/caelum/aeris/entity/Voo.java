@@ -9,7 +9,14 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import org.jboss.seam.ScopeType;
+import org.jboss.seam.annotations.Name;
+import org.jboss.seam.annotations.Scope;
+
 @Entity
+
+@Name("voo")
+@Scope(ScopeType.EVENT)
 public class Voo {
 	@Id
 	@GeneratedValue

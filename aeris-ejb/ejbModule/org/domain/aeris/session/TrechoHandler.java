@@ -16,6 +16,12 @@ import org.jboss.seam.log.Log;
 
 import br.com.caelum.aeris.entity.Trecho;
 
+/**
+ * Managed respons‡vel pela p‡gina
+ * de cadastro de trechos.
+ * 
+ * @author Gilson Filho
+ */
 @Name("trechoHandler")
 @Scope(ScopeType.EVENT)
 public class TrechoHandler {
